@@ -19,6 +19,7 @@ function App() {
   return (
     <div className="p-4 bg-[#E6E8E9] h-screen w-full grid place-items-center">
       <MultiSelect
+        id='chartType'
         label="Chart type"
         options={options}
         value={selectedOptions}

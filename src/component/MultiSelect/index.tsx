@@ -8,6 +8,17 @@ export interface SelectProps {
     onSelect?: (options: string[]) => void;
 }
 
+/**
+ * MultiSelect Component
+ * 
+ * A customizable multi-select dropdown component that allows users to select multiple options,
+ * search for options, and add new values if they are not present in the options list.
+ * 
+ * @param {string} label - The label for the select input.
+ * @param {string[]} options - List of available options to select from.
+ * @param {string[]} [value=[]] - Initially selected options.
+ * @param {Function} [onSelect] - Callback function to handle selection changes.
+ */
 const MultiSelect = ({
     label = '',
     options,
@@ -136,7 +147,7 @@ const MultiSelect = ({
                                     {search.trim()} <span className="text-gray-500">(new value)</span>
                                 </li>
                             ) : (
-                                <li className="p-2 text-sm text-gray-500">No hay opciones disponibles</li>
+                                <li className="p-2 text-sm text-gray-500">No options available</li>
                             )}
                         </ul>
                     </div>
