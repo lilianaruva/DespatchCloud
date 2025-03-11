@@ -112,7 +112,8 @@ const MultiSelect = ({
                 </div>
 
                 {isOpen && (
-                    <div className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-md shadow-lg z-10">
+                    <div className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-md shadow-lg z-10 mt-2">
+                        <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-b-8 border-white"></div>
                         <ul className="max-h-32 overflow-y-auto">
                             {filteredOptions.length > 0 ? (
                                 filteredOptions.map((option) => (
