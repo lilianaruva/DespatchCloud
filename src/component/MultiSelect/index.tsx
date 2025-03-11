@@ -21,17 +21,13 @@ const MultiSelect = ({
     const containerRef = useRef<HTMLDivElement>(null);
 
     const handleOptionClick = (option: string) => {
-        setSelectedOptions((prevOptions) => {
-            const isSelected = prevOptions.includes(option);
-            const updatedOptions = isSelected
-                ? prevOptions.filter((selected) => selected !== option)
-                : [...prevOptions, option];
-
+        if (!selectedOptions.includes(option)) {
+            const updatedOptions = [...selectedOptions, option];
+            setSelectedOptions(updatedOptions);
             if (onSelect) {
                 onSelect(updatedOptions);
             }
-            return updatedOptions;
-        });
+        }
     };
 
     const handleRemoveOption = (option: string) => {
@@ -57,6 +53,18 @@ const MultiSelect = ({
                 onSelect([...options, ...nonExistingOptions]);
             }
         }
+    };
+
+    const highlightMatch = (option: string) => {
+        if (!search) return option;
+        const parts = option.split(new RegExp(`(${search})`, 'gi'));
+        return parts.map((part, index) =>
+            part.toLowerCase() === search.toLowerCase() ? (
+                <span key={index} className="underline decoration-solid">{part}</span>
+            ) : (
+                part
+            )
+        );
     };
 
     useEffect(() => {
@@ -113,7 +121,7 @@ const MultiSelect = ({
                                         onClick={() => handleOptionClick(option)}
                                         className="p-2 text-sm hover:bg-gray-100 cursor-pointer"
                                     >
-                                        {option}
+                                        {highlightMatch(option)}
                                     </li>
                                 ))
                             ) : showNewValue ? (
