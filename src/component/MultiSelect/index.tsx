@@ -49,6 +49,14 @@ const MultiSelect = ({
             handleOptionClick(search.trim());
             setSearch('');
         }
+        if (e.ctrlKey && e.key === 'a') {
+            e.preventDefault();
+            const nonExistingOptions = selectedOptions.filter(opt => !options.includes(opt));
+            setSelectedOptions([...options, ...nonExistingOptions]);
+            if (onSelect) {
+                onSelect([...options, ...nonExistingOptions]);
+            }
+        }
     };
 
     useEffect(() => {
@@ -94,8 +102,6 @@ const MultiSelect = ({
                         className="p-1 text-sm border-transparent focus:outline-none size-auto"
                     />
                 </div>
-
-
 
                 {isOpen && (
                     <div className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-md shadow-lg z-10">
